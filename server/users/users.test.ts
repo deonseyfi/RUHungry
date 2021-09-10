@@ -1,21 +1,20 @@
-import MongodbMemoryServer from 'mongodb-memory-server';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import request from 'supertest';
 import app from '../app';
 import User from './user.model';
 
 describe('/api/users tests', () => {
-    // eslint-disable-next-line new-cap
-    const mongodb = new MongodbMemoryServer();
+    const mongod = new MongoMemoryServer();
 
     beforeAll(async () => {
-        const uri = await mongodb.getConnectionString();
+        const uri = await mongod.getUri();
         await mongoose.connect(uri, { useNewUrlParser: true });
     });
 
     afterAll(async () => {
         await mongoose.disconnect();
-        await mongodb.stop();
+        await mongod.stop();
     });
 
     afterEach(async () => {
