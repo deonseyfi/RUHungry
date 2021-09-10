@@ -17,7 +17,7 @@ import { url } from '../server/config';
             console.log(chalk.yellow('No users or items in the database, creating sample data...'));
             const user = new User({ name: 'Bob Bob', age: 50 });
             await user.save();
-            console.log(chalk.green('Sample user successfuly created!'));
+            console.log(chalk.green('Sample user successfully created!'));
             const newItems = [
                 { name: 'Paper clip', value: 0.1 },
                 { name: 'Colorful pen', value: 1.2 },
@@ -26,7 +26,7 @@ import { url } from '../server/config';
                 { name: 'Table lamp', value: 5.1 },
             ];
             await Item.insertMany(newItems);
-            console.log(chalk.green(`${newItems.length} item(s) successfuly created!`));
+            console.log(chalk.green(`${newItems.length} item(s) successfully created!`));
         } else {
             console.log(chalk.yellow('Database already initiated, skipping populating script'));
         }

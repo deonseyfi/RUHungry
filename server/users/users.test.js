@@ -5,16 +5,17 @@ import app from '../app';
 import User from './user.model';
 
 describe('/api/users tests', () => {
-    const mongod = new MongodbMemoryServer();
+    // eslint-disable-next-line new-cap
+    const mongodb = new MongodbMemoryServer();
 
     beforeAll(async () => {
-        const uri = await mongod.getConnectionString();
+        const uri = await mongodb.getConnectionString();
         await mongoose.connect(uri, { useNewUrlParser: true });
     });
 
     afterAll(async () => {
         await mongoose.disconnect();
-        await mongod.stop();
+        await mongodb.stop();
     });
 
     afterEach(async () => {

@@ -10,19 +10,24 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
 
-const isLocalhost = Boolean(
+const isLocalHost = Boolean(
     window.location.hostname === 'localhost' ||
-        // [::1] is the IPv6 localhost address.
+        // [::1] is the ipv6 localhost address.
         window.location.hostname === '[::1]' ||
-        // 127.0.0.0/8 are considered localhost for IPv4.
+        // 127.0.0.0/8 are considered localhost for ipv4.
         window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/),
 );
 
 type Config = {
-    onSuccess?: (registration: ServiceWorkerRegistration) => void;
-    onUpdate?: (registration: ServiceWorkerRegistration) => void;
+    onSuccess?: () => void;
+    onUpdate?: () => void;
 };
-
+/**
+ * Registers.
+ *
+ * @param {Config | undefined} config Optional config.
+ * @returns {undefined}
+ */
 export function register(config?: Config) {
     if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
         // The URL constructor is available in all browsers that support SW.
@@ -37,7 +42,7 @@ export function register(config?: Config) {
         window.addEventListener('load', () => {
             const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
-            if (isLocalhost) {
+            if (isLocalHost) {
                 // This is running on localhost. Let's check if a service worker still exists or not.
                 checkValidServiceWorker(swUrl, config);
 
@@ -56,11 +61,17 @@ export function register(config?: Config) {
         });
     }
 }
-
+/**
+ * Register valid service worker.
+ *
+ * @param {string} swUrl Service worker url.
+ * @param {Config} config Optional config.
+ */
 function registerValidSW(swUrl: string, config?: Config) {
     navigator.serviceWorker
         .register(swUrl)
         .then((registration) => {
+            // eslint-disable-next-line no-param-reassign
             registration.onupdatefound = () => {
                 const installingWorker = registration.installing;
                 if (installingWorker == null) {
@@ -79,17 +90,17 @@ function registerValidSW(swUrl: string, config?: Config) {
 
                             // Execute callback
                             if (config && config.onUpdate) {
-                                config.onUpdate(registration);
+                                config.onUpdate();
                             }
                         } else {
-                            // At this point, everything has been precached.
+                            // At this point, everything has been pre-cached.
                             // It's the perfect time to display a
                             // "Content is cached for offline use." message.
                             console.log('Content is cached for offline use.');
 
                             // Execute callback
                             if (config && config.onSuccess) {
-                                config.onSuccess(registration);
+                                config.onSuccess();
                             }
                         }
                     }
@@ -100,7 +111,12 @@ function registerValidSW(swUrl: string, config?: Config) {
             console.error('Error during service worker registration:', error);
         });
 }
-
+/**
+ * Check for valid service worker.
+ *
+ * @param {string} swUrl Service worker url.
+ * @param {Config} config Optional config.
+ */
 function checkValidServiceWorker(swUrl: string, config?: Config) {
     // Check if the service worker can be found. If it can't reload the page.
     fetch(swUrl, {
@@ -125,7 +141,9 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
             console.log('No internet connection found. App is running in offline mode.');
         });
 }
-
+/**
+ * Unregister.
+ */
 export function unregister() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.ready.then((registration) => {

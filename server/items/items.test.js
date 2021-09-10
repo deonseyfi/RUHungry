@@ -5,16 +5,16 @@ import app from '../app';
 import Item from './item.model';
 
 describe('/api/items tests', () => {
-    const mongod = new MongodbMemoryServer();
+    const mongodb = new MongodbMemoryServer();
 
     beforeAll(async () => {
-        const uri = await mongod.getConnectionString();
+        const uri = await mongodb.getConnectionString();
         await mongoose.connect(uri, { useNewUrlParser: true });
     });
 
     afterAll(async () => {
         await mongoose.disconnect();
-        await mongod.stop();
+        await mongodb.stop();
     });
 
     afterEach(async () => {
