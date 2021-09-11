@@ -42,8 +42,7 @@
                     "javascript",
                     "frontend",
                     "Mongodb",
-                    "uri",
-                    "mongod"
+                    "uri"
                 ]
             }
         ],
