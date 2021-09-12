@@ -1,0 +1,93 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true
+    },
+    "extends": ["plugin:react/recommended", "airbnb", "eslint:recommended", "plugin:import/typescript"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": ["react", "@typescript-eslint", "jsdoc", "spellcheck"],
+    "rules": {
+        "max-len": [2, { "code": 120 }],
+        "indent": ["error", 4],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "jsx-quotes": ["error", "prefer-single"],
+        "no-use-before-define": "off",
+        "linebreak-style": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        "react/jsx-one-expression-per-line": [0, { "allow": "literal" }],
+        "spellcheck/spell-checker": [
+            1,
+            {
+                "skipWords": [
+                    "jsdoc",
+                    "aram",
+                    "deon",
+                    "unregister",
+                    "localhost",
+                    "ipv4",
+                    "ipv6",
+                    "href",
+                    "onupdatefound",
+                    "onstatechange",
+                    "javascript",
+                    "frontend",
+                    "Mongodb",
+                    "uri",
+                    "mongod"
+                ]
+            }
+        ],
+        "operator-linebreak": 0,
+        "no-unused-vars": 1,
+        "no-console": 0,
+        "import/extensions": 0,
+        "jsdoc/check-alignment": 1,
+        "jsdoc/check-indentation": 1,
+        "jsdoc/check-line-alignment": 1,
+        "jsdoc/check-param-names": 1,
+        "jsdoc/check-property-names": 1,
+        "jsdoc/check-tag-names": 1,
+        "jsdoc/check-types": 1,
+        "jsdoc/check-values": 1,
+        "jsdoc/empty-tags": 1,
+        "jsdoc/multiline-blocks": 1,
+        "jsdoc/newline-after-description": 1,
+        "jsdoc/no-multi-asterisks": 1,
+        "jsdoc/no-undefined-types": 1,
+        "jsdoc/require-asterisk-prefix": 1,
+        "jsdoc/require-description": 1,
+        "jsdoc/require-description-complete-sentence": 1,
+        "jsdoc/require-jsdoc": [
+            1,
+            {
+                "require": {
+                    "FunctionExpression": true,
+                    "ClassDeclaration": true
+                }
+            }
+        ],
+        "jsdoc/require-param": 1,
+        "jsdoc/require-param-description": 1,
+        "jsdoc/require-param-name": 1,
+        "jsdoc/require-param-type": 1,
+        "jsdoc/require-property": 1,
+        "jsdoc/require-property-description": 1,
+        "jsdoc/require-property-name": 1,
+        "jsdoc/require-property-type": 1,
+        "jsdoc/require-returns": 1,
+        "jsdoc/require-returns-check": 1,
+        "jsdoc/require-returns-description": 1,
+        "jsdoc/require-returns-type": 1,
+        "jsdoc/valid-types": 1
+    }
+}
