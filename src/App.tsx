@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import logo from './logo.svg';
 import './App.css';
 
@@ -27,9 +29,9 @@ const App: React.FC = () => {
                     Learn React
                 </a>
                 <br />
-                <button type='button' className='App-link' onClick={getUsers}>
+                <Button variant='contained' color='primary' startIcon={<AccountCircleIcon />} onClick={getUsers}>
                     Fetch users in DB
-                </button>
+                </Button>
                 {users && (
                     <ul>
                         {users.map((user) => (
