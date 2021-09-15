@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import logo from './logo.svg';
 import './App.css';
+import { ReactComponent as Logo } from './ruhungry.svg';
+import Emoji from './Emoji';
+import Select from './Select';
 
 type User = {
     name: string;
@@ -21,17 +23,12 @@ const App: React.FC = () => {
     return (
         <div className='App'>
             <header className='App-header'>
-                <img src={logo} className='App-logo' alt='logo' />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className='App-link' href='https://reactjs.org'>
-                    Learn React
-                </a>
+                <Logo className='App-logo' />
                 <br />
                 <Button variant='contained' color='primary' startIcon={<AccountCircleIcon />} onClick={getUsers}>
                     Fetch users in DB
                 </Button>
+                <Emoji label='happy' symbol='😀' />
                 {users && (
                     <ul>
                         {users.map((user) => (
@@ -39,6 +36,8 @@ const App: React.FC = () => {
                         ))}
                     </ul>
                 )}
+                <br />
+                <Select />
             </header>
         </div>
     );
