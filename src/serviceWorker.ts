@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-returns-check */
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
@@ -17,9 +18,17 @@ const isLocalHost = Boolean(
         // 127.0.0.0/8 are considered localhost for ipv4.
         window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/),
 );
-
+/**
+ * Config type.
+ */
 type Config = {
+    /**
+     * On Success call.
+     */
     onSuccess?: () => void;
+    /**
+     * On Update call.
+     */
     onUpdate?: () => void;
 };
 /**
@@ -71,12 +80,20 @@ function registerValidSW(swUrl: string, config?: Config) {
     navigator.serviceWorker
         .register(swUrl)
         .then((registration) => {
+            /**
+             * On update found.
+             *
+             * @returns {null} .
+             */
             // eslint-disable-next-line no-param-reassign
             registration.onupdatefound = () => {
                 const installingWorker = registration.installing;
                 if (installingWorker == null) {
                     return;
                 }
+                /**
+                 * On state change.
+                 */
                 installingWorker.onstatechange = () => {
                     if (installingWorker.state === 'installed') {
                         if (navigator.serviceWorker.controller) {
