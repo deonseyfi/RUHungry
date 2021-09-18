@@ -26,8 +26,10 @@
         "no-use-before-define": "off",
         "linebreak-style": "off",
         "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-unused-vars": "error",
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "react/jsx-one-expression-per-line": [0, { "allow": "literal" }],
+        "react/destructuring-assignment": 0,
         "spellcheck/spell-checker": [
             1,
             {
@@ -50,7 +52,7 @@
             }
         ],
         "operator-linebreak": 0,
-        "no-unused-vars": 1,
+        "no-unused-vars": 0,
         "no-console": 0,
         "import/extensions": 0,
         "jsdoc/check-alignment": 1,
@@ -74,8 +76,18 @@
             {
                 "require": {
                     "FunctionExpression": true,
-                    "ClassDeclaration": true
-                }
+                    "ClassDeclaration": true,
+                    "ArrowFunctionExpression":true,
+                    "ClassExpression": true,
+                    "MethodDefinition": true
+                },
+                "contexts":[
+                    "TSInterfaceDeclaration",
+                    "TSTypeAliasDeclaration",
+                    "TSDeclareFunction",
+                    "TSMethodSignature",
+                    "TSPropertySignature"
+                ]
             }
         ],
         "jsdoc/require-param": 1,

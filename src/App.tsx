@@ -6,18 +6,61 @@ import { ReactComponent as Logo } from './ruhungry.svg';
 import Emoji from './Emoji';
 import Select from './Select';
 
+/**
+ * User type.
+ */
 type User = {
+   /**
+    * Name of the User.
+    */
     name: string;
+    /**
+     * Age of the User.
+     */
     age: number;
 };
 
-const App: React.FC = () => {
-    const [users, setUsers] = useState<User[]>();
+const list = [
+    { value: 'All', symbol: 'All' },
+    { value: 'Burgers', symbol: '🍔' },
+    { value: 'Hot Dogs', symbol: '🌭' },
+    { value: 'Mexican', symbol: '🌮' },
+    { value: 'Pizza', symbol: '🍕' },
+    { value: 'Italian', symbol: '🍝' },
+];
 
+/**
+ * Main App component to be rendered.
+ *
+ * @returns {React.ReactElement} Main app component.
+ */
+const App: React.FC = (): React.ReactElement => {
+    const [users, setUsers] = useState<User[]>();
+    const [selectValue, setSelectValue] = React.useState('All');
+    /**
+     * Fetches users from the database.
+     */
     const getUsers = () => {
         fetch('/api/users')
             .then((res) => res.json())
             .then(setUsers);
+    };
+    /**
+     * Function to change the current selected option.
+     *
+     * @param {React.ChangeEvent} event Change of selection.
+     */
+    const handleSelectChange = (
+        event: React.ChangeEvent<
+            {
+                /**
+                 * Selected value.
+                 */
+                value: unknown
+            }
+            >,
+    ) => {
+        setSelectValue(event.target.value as string);
     };
 
     return (
@@ -37,7 +80,10 @@ const App: React.FC = () => {
                     </ul>
                 )}
                 <br />
-                <Select />
+                <Select value={selectValue} onChange={handleSelectChange}>
+                    {list}
+                </Select>
+                <p>The selected item is { selectValue }</p>
             </header>
         </div>
     );
