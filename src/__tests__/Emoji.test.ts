@@ -1,4 +1,4 @@
-import Emoji from './Emoji';
+import Emoji from '../components/Emoji';
 
 const props = {
     label: 'Happy face',

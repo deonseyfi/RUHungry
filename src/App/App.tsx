@@ -3,8 +3,8 @@ import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import './App.css';
 import { ReactComponent as Logo } from './ruhungry.svg';
-import Emoji from './Emoji';
-import Select from './Select';
+import Emoji from '../components/Emoji';
+import Select from '../components/Select';
 
 /**
  * User type.
