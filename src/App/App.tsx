@@ -47,7 +47,7 @@ const App: React.FC = (): React.ReactElement => {
             .then(setUsers);
     };
     /**
-     * Temporarily alert which food categories have been selected.
+     * Move from Home to Cravings.
      */
     const handleClickedStart = () => {
         setClickedStart(true);
