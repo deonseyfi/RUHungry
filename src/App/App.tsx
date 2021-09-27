@@ -10,16 +10,15 @@ import Select from '../components/Select';
  * User type.
  */
 type User = {
-   /**
-    * Name of the User.
-    */
+    /**
+     * Name of the User.
+     */
     name: string;
     /**
      * Age of the User.
      */
     age: number;
 };
-
 const list = [
     { value: 'All', symbol: 'All' },
     { value: 'Burgers', symbol: '🍔' },
@@ -51,14 +50,12 @@ const App: React.FC = (): React.ReactElement => {
      * @param {React.ChangeEvent} event Change of selection.
      */
     const handleSelectChange = (
-        event: React.ChangeEvent<
-            {
-                /**
-                 * Selected value.
-                 */
-                value: unknown
-            }
-            >,
+        event: React.ChangeEvent<{
+            /**
+             * Selected value.
+             */
+            value: unknown;
+        }>,
     ) => {
         setSelectValue(event.target.value as string);
     };
@@ -83,7 +80,7 @@ const App: React.FC = (): React.ReactElement => {
                 <Select value={selectValue} onChange={handleSelectChange}>
                     {list}
                 </Select>
-                <p>The selected item is { selectValue }</p>
+                <p>The selected item is {selectValue}</p>
             </header>
         </div>
     );
