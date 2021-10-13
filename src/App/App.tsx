@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import './App.css';
-import { ReactComponent as Logo } from './ruhungry.svg';
 import Emoji from '../components/Emoji';
 import Select from '../components/Select';
+import StartSplash from '../components/StartSplash';
 
 /**
  * User type.
  */
 type User = {
-   /**
-    * Name of the User.
-    */
+    /**
+     * Name of the User.
+     */
     name: string;
     /**
      * Age of the User.
@@ -37,6 +37,7 @@ const list = [
 const App: React.FC = (): React.ReactElement => {
     const [users, setUsers] = useState<User[]>();
     const [selectValue, setSelectValue] = React.useState('All');
+    const [clickedStart, setClickedStart] = React.useState(false);
     /**
      * Fetches users from the database.
      */
@@ -46,19 +47,23 @@ const App: React.FC = (): React.ReactElement => {
             .then(setUsers);
     };
     /**
+     * Move from Home to Cravings.
+     */
+    const handleClickedStart = () => {
+        setClickedStart(true);
+    };
+    /**
      * Function to change the current selected option.
      *
      * @param {React.ChangeEvent} event Change of selection.
      */
     const handleSelectChange = (
-        event: React.ChangeEvent<
-            {
-                /**
-                 * Selected value.
-                 */
-                value: unknown
-            }
-            >,
+        event: React.ChangeEvent<{
+            /**
+             * Selected value.
+             */
+            value: unknown;
+        }>,
     ) => {
         setSelectValue(event.target.value as string);
     };
@@ -66,24 +71,34 @@ const App: React.FC = (): React.ReactElement => {
     return (
         <div className='App'>
             <header className='App-header'>
-                <Logo className='App-logo' />
-                <br />
-                <Button variant='contained' color='primary' startIcon={<AccountCircleIcon />} onClick={getUsers}>
-                    Fetch users in DB
-                </Button>
-                <Emoji label='happy' symbol='😀' />
-                {users && (
-                    <ul>
-                        {users.map((user) => (
-                            <li key={user.name}>{`${user.name}, ${user.age} years old`}</li>
-                        ))}
-                    </ul>
+                {!clickedStart && (
+                    <StartSplash onClick={handleClickedStart} />
                 )}
-                <br />
-                <Select value={selectValue} onChange={handleSelectChange}>
-                    {list}
-                </Select>
-                <p>The selected item is { selectValue }</p>
+                {clickedStart && (
+                    <>
+                        <Button
+                            variant='contained'
+                            color='primary'
+                            startIcon={<AccountCircleIcon />}
+                            onClick={getUsers}
+                        >
+                            Fetch users in DB
+                        </Button>
+                        <Emoji label='happy' symbol='😀' />
+                        {users && (
+                            <ul>
+                                {users.map((user) => (
+                                    <li key={user.name}>{`${user.name}, ${user.age} years old`}</li>
+                                ))}
+                            </ul>
+                        )}
+                        <br />
+                        <Select value={selectValue} onChange={handleSelectChange}>
+                            {list}
+                        </Select>
+                        <p>The selected item is {selectValue}</p>
+                    </>
+                )}
             </header>
         </div>
     );
