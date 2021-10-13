@@ -1,12 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { mount, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import App from '../App/App';
 
+configure({ adapter: new Adapter() });
+
 describe('Frontend test', () => {
-    test('renders learn react link', () => {
-        const { getByText } = render(<App />);
-        const linkElement = getByText(/learn react/i);
-        expect(linkElement).toBeInTheDocument();
-        expect(getByText).toMatchSnapshot();
+    test('renders App', () => {
+        const wrapper = mount(<App />);
+        expect(wrapper).toMatchSnapshot();
     });
 });
