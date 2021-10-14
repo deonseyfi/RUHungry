@@ -32,6 +32,7 @@ describe('Frontend test', () => {
         const app = wrapper.find(App).instance() as App;
         app.handleFirstCategoryChange('Pizza');
         expect(wrapper.find(App).state('firstCategoryValue')).toEqual('Pizza');
+        wrapper.unmount();
     });
 
     test('Add category clicked', () => {
@@ -54,6 +55,8 @@ describe('Frontend test', () => {
 
         wrapper.find(App).setState({ clickedStart: true });
         wrapper.find(App).setState({ firstCategoryValue: 'Pizza' });
+        wrapper.find(App).setState({ addCategory: true });
+
         const app = wrapper.find(App).instance() as App;
         app.handleSecondCategoryChange('Burgers');
         expect(wrapper.find(App).state('secondCategoryValue')).toEqual('Burgers');

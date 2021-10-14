@@ -77,7 +77,7 @@ class App extends React.Component<{}, AppState> {
         );
         return (
             <div className='App'>
-                <header className='App-header'>
+                <div className='App-header'>
                     {!this.state.clickedStart && <StartSplash onClick={this.handleClickedStart} />}
                     {this.state.clickedStart && (
                         <>
@@ -124,7 +124,7 @@ class App extends React.Component<{}, AppState> {
                             )}
                         </>
                     )}
-                </header>
+                </div>
             </div>
         );
     }
