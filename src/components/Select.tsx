@@ -48,12 +48,14 @@ interface SelectProps {
     /**
      * Handle a change of selection.
      */
-    onChange: (event: React.ChangeEvent<{
-        /**
-         * Value being passed into the onChange call.
-         */
-        value: unknown;
-    }>,) => void
+    onChange: (
+        event: React.ChangeEvent<{
+            /**
+             * Value being passed into the onChange call.
+             */
+            value: unknown;
+        }>,
+    ) => void;
 }
 
 /**
@@ -65,8 +67,11 @@ interface SelectProps {
 const Select = (props: SelectProps): React.ReactElement<SelectProps> => {
     const classes = useStyles();
     // Map list of children into HTML Option items for Select
-    const list = props.children.map((items) =>
-        <option key={items.value} value={items.value}>{items.symbol}</option>);
+    const list = props.children.map((category) => (
+        <option key={category.value} value={category.value}>
+            {category.symbol}
+        </option>
+    ));
 
     return (
         <FormControl className={classes.formControl}>
