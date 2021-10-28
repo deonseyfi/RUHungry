@@ -1,9 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { IconButton } from '@material-ui/core';
+import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
 import './App.css';
 import AppState from './app-state';
 import Select from '../components/Select';
 import StartSplash from '../components/StartSplash';
+import LuckyButton from '../components/LuckyButton';
 import CATEGORIES from './constants';
 import { FoodCategoryList } from './types';
 
@@ -25,6 +28,7 @@ class App extends React.Component<{}, AppState> {
         this.handleClickedStart = this.handleClickedStart.bind(this);
         this.handleFirstCategoryChange = this.handleFirstCategoryChange.bind(this);
         this.handleSecondCategoryChange = this.handleSecondCategoryChange.bind(this);
+        this.handleNextButton = this.handleNextButton.bind(this);
     }
 
     /**
@@ -32,7 +36,7 @@ class App extends React.Component<{}, AppState> {
      */
     public handleClickedStart = () => {
         this.setState({ clickedStart: true });
-    }
+    };
 
     /**
      * Function to change the current selected option in the first category.
@@ -50,6 +54,17 @@ class App extends React.Component<{}, AppState> {
      */
     public handleSecondCategoryChange = (value: string) => {
         this.setState({ secondCategoryValue: value });
+    };
+
+    /**
+     * Temporarily alert which food categories have been selected.
+     */
+    public handleNextButton = () => {
+        if (this.state.addCategory) {
+            alert(`Chosen ${this.state.firstCategoryValue} and ${this.state.secondCategoryValue}`);
+        } else {
+            alert(`Chosen ${this.state.firstCategoryValue}`);
+        }
     };
 
     /**
@@ -106,22 +121,53 @@ class App extends React.Component<{}, AppState> {
                             )}
                             {this.state.addCategory === true && (
                                 <>
-                                    <Select
-                                        value={this.state.secondCategoryValue}
-                                        onChange={(event): void => {
-                                            this.handleFirstCategoryChange(String(event.target.value));
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            justifyContent: 'center',
+                                            paddingLeft: '3rem',
                                         }}
                                     >
-                                        {secondCategoryList}
-                                    </Select>
+                                        <Select
+                                            value={this.state.secondCategoryValue}
+                                            onChange={(event): void => {
+                                                this.handleSecondCategoryChange(String(event.target.value));
+                                            }}
+                                        >
+                                            {secondCategoryList}
+                                        </Select>
+                                        <IconButton
+                                            size='medium'
+                                            onClick={() => {
+                                                this.setState({ addCategory: false });
+                                                this.setState({ secondCategoryValue: '' });
+                                            }}
+                                        >
+                                            <HighlightOffSharpIcon color='secondary' />
+                                        </IconButton>
+                                    </div>
                                     <div>
-                                        (DEV) The current selected value is{' '}
+                                        The current selected value is{' '}
                                         {this.state.secondCategoryValue === ''
                                             ? 'Blank'
                                             : this.state.secondCategoryValue}
                                     </div>
                                 </>
                             )}
+                            <br />
+                            <br />
+                            <br />
+                            {(!this.state.addCategory ||
+                                (this.state.addCategory && this.state.secondCategoryValue !== '')) && (
+                                <Button variant='outlined' color='inherit' onClick={this.handleNextButton}>
+                                    Next
+                                </Button>
+                            )}
+                            <br />
+                            <br />
+                            <br />
+                            <LuckyButton />
                         </>
                     )}
                 </div>
