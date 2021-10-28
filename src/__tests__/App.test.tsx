@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { Button } from '@material-ui/core';
+import { Button, IconButton } from '@material-ui/core';
 import App from '../App/App';
 
 configure({ adapter: new Adapter() });
@@ -60,5 +60,36 @@ describe('Frontend test', () => {
         const app = wrapper.find(App).instance() as App;
         app.handleSecondCategoryChange('Burgers');
         expect(wrapper.find(App).state('secondCategoryValue')).toEqual('Burgers');
+    });
+
+    test('Clear second category', () => {
+        const wrapper = mount(<App />);
+
+        wrapper.find(App).setState({ clickedStart: true });
+        wrapper.find(App).setState({ firstCategoryValue: 'Burgers' });
+        wrapper.find(App).setState({ addCategory: true });
+        wrapper.find(App).setState({ secondCategoryValue: 'Pizza' });
+        wrapper.find(IconButton).at(0).simulate('click');
+        wrapper.update();
+
+        expect(wrapper.find(App).state('addCategory')).toEqual(false);
+        expect(wrapper.find(App).state('secondCategoryValue')).toEqual('');
+        wrapper.unmount();
+    });
+
+    test.skip('Lucky Button clicked', () => {
+        const wrapper = mount(<App />);
+
+        wrapper.find(App).setState({ clickedStart: true });
+        wrapper.find(App).setState({ firstCategoryValue: 'Burgers' });
+        wrapper.find(App).setState({ addCategory: true });
+        wrapper.find(App).setState({ secondCategoryValue: 'Pizza' });
+        wrapper.update();
+        const nextSpy = jest.spyOn(App.prototype, 'handleNextButton');
+        wrapper.find(Button).simulate('click');
+        wrapper.update();
+
+        expect(nextSpy).toHaveBeenCalled();
+        wrapper.unmount();
     });
 });

@@ -17,6 +17,7 @@
     "rules": {
         "max-len": [2, { "code": 130 }],
         "indent": ["error", 4],
+        "no-alert":"off",
         "react/jsx-indent": ["error", 4],
         "react/jsx-props-no-spreading": "off",
         "react/jsx-indent-props": ["error", 4],
