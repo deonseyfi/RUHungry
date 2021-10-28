@@ -15,7 +15,7 @@
     },
     "plugins": ["react", "@typescript-eslint", "jsdoc", "spellcheck"],
     "rules": {
-        "max-len": [2, { "code": 120 }],
+        "max-len": [2, { "code": 130 }],
         "indent": ["error", 4],
         "react/jsx-indent": ["error", 4],
         "react/jsx-props-no-spreading": "off",
@@ -48,7 +48,9 @@
                     "Mongodb",
                     "uri",
                     "mongod",
-                    "Mui"
+                    "Mui",
+                    "unmount",
+                    "unrendered"
                 ]
             }
         ],

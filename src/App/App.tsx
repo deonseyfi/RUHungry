@@ -1,115 +1,132 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import './App.css';
+import AppState from './app-state';
 import Select from '../components/Select';
 import StartSplash from '../components/StartSplash';
 import CATEGORIES from './constants';
 import { FoodCategoryList } from './types';
 
 /**
- * Main App component to be rendered.
- *
- * @returns {React.ReactElement} Main app component.
+ * Main App class.
  */
-const App: React.FC = (): React.ReactElement => {
-    const [clickedStart, setClickedStart] = React.useState(false);
-    const [firstCategoryValue, setFirstCategoryValue] = React.useState('All');
-    const [secondCategoryValue, setSecondCategoryValue] = React.useState('');
-    const [secondCategory, setSecondCategory] = React.useState(false);
+class App extends React.Component<{}, AppState> {
+    /**
+     * App constructor.
+     */
+    public constructor(props: {}) {
+        super(props);
+        this.state = {
+            clickedStart: false,
+            firstCategoryValue: 'All',
+            secondCategoryValue: '',
+            addCategory: false,
+        };
+        this.handleClickedStart = this.handleClickedStart.bind(this);
+        this.handleFirstCategoryChange = this.handleFirstCategoryChange.bind(this);
+        this.handleSecondCategoryChange = this.handleSecondCategoryChange.bind(this);
+    }
+
     /**
      * Move from Home to Cravings.
      */
-    const handleClickedStart = () => {
-        setClickedStart(true);
-    };
+    public handleClickedStart = () => {
+        this.setState({ clickedStart: true });
+    }
+
     /**
      * Function to change the current selected option in the first category.
      *
-     * @param {React.ChangeEvent} event Change of selection.
+     * @param {string} value The first Select's value.
      */
-    const handleFirstCategoryChange = (
-        event: React.ChangeEvent<{
-            /**
-             * Selected value.
-             */
-            value: unknown;
-        }>,
-    ) => {
-        setFirstCategoryValue(event.target.value as string);
+    public handleFirstCategoryChange = (value: string) => {
+        this.setState({ firstCategoryValue: value });
     };
+
     /**
      * Function to change the current selected option in the second category.
      *
-     * @param {React.ChangeEvent} event Change of selection.
+     * @param {string} value The second Select's value.
      */
-    const handleSecondCategoryChange = (
-        event: React.ChangeEvent<{
-            /**
-             * Selected value.
-             */
-            value: unknown;
-        }>,
-    ) => {
-        setSecondCategoryValue(event.target.value as string);
+    public handleSecondCategoryChange = (value: string) => {
+        this.setState({ secondCategoryValue: value });
     };
 
-    // List of Categories for first Select.
-    // If second category, remove All, blank, and second category value.
-    // Else, remove blank.
-    const firstCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
-        (secondCategory
-            ? category.value !== secondCategoryValue && category.value !== '' && category.value !== 'All'
-            : category.value !== ''),
-    );
+    /**
+     * Renders App.
+     *
+     * @returns {React.ReactNode} Rendered App.
+     */
+    render(): React.ReactNode {
+        // List of Categories for first Select.
+        // If second category, remove All, blank, and second category value.
+        // Else, remove blank.
+        const firstCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
+            (this.state.addCategory
+                ? category.value !== this.state.secondCategoryValue && category.value !== '' && category.value !== 'All'
+                : category.value !== ''),
+        );
 
-    // New List of Categories for second Select.
-    // If second category value is blank, remove All and first category value.
-    // Else, remove All, first category value, and blank.
-    const secondCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
-        (secondCategoryValue === ''
-            ? category.value !== firstCategoryValue && category.value !== 'All'
-            : category.value !== firstCategoryValue && category.value !== 'All' && category.value !== ''),
-    );
-
-    return (
-        <div className='App'>
-            <header className='App-header'>
-                {!clickedStart && <StartSplash onClick={handleClickedStart} />}
-                {clickedStart && (
-                    <>
-                        <Select value={firstCategoryValue} onChange={handleFirstCategoryChange}>
-                            {firstCategoryList}
-                        </Select>
-                        <div>(DEV) The current selected value is {firstCategoryValue}</div>
-                        <br />
-                        {firstCategoryValue !== 'All' && secondCategory === false && (
-                            <Button
-                                variant='outlined'
-                                color='inherit'
-                                onClick={() => {
-                                    setSecondCategory(true);
+        // New List of Categories for second Select.
+        // If second category value is blank, remove All and first category value.
+        // Else, remove All, first category value, and blank.
+        const secondCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
+            (this.state.secondCategoryValue === ''
+                ? category.value !== this.state.firstCategoryValue && category.value !== 'All'
+                : category.value !== this.state.firstCategoryValue && category.value !== 'All' && category.value !== ''),
+        );
+        return (
+            <div className='App'>
+                <div className='App-header'>
+                    {!this.state.clickedStart && <StartSplash onClick={this.handleClickedStart} />}
+                    {this.state.clickedStart && (
+                        <>
+                            <Select
+                                value={this.state.firstCategoryValue}
+                                onChange={(event): void => {
+                                    this.handleFirstCategoryChange(String(event.target.value));
                                 }}
                             >
-                                {' '}
-                                Add Another Category
-                            </Button>
-                        )}
-                        {secondCategory === true && (
-                            <>
-                                <Select value={secondCategoryValue} onChange={handleSecondCategoryChange}>
-                                    {secondCategoryList}
-                                </Select>
-                                <div>
-                                    (DEV) The current selected value is{' '}
-                                    {secondCategoryValue === '' ? 'Blank' : secondCategoryValue}
-                                </div>
-                            </>
-                        )}
-                    </>
-                )}
-            </header>
-        </div>
-    );
-};
-
+                                {firstCategoryList}
+                            </Select>
+                            <div>(DEV) The current selected value is {this.state.firstCategoryValue}</div>
+                            <br />
+                            {this.state.firstCategoryValue !== 'All' && this.state.addCategory === false && (
+                                <Button
+                                    id='add'
+                                    variant='outlined'
+                                    color='inherit'
+                                    onClick={() => {
+                                        this.setState({ addCategory: true });
+                                    }}
+                                >
+                                    {' '}
+                                    Add Another Category
+                                </Button>
+                            )}
+                            {this.state.addCategory === true && (
+                                <>
+                                    <Select
+                                        value={this.state.secondCategoryValue}
+                                        onChange={(event): void => {
+                                            this.handleFirstCategoryChange(String(event.target.value));
+                                        }}
+                                    >
+                                        {secondCategoryList}
+                                    </Select>
+                                    <div>
+                                        (DEV) The current selected value is{' '}
+                                        {this.state.secondCategoryValue === ''
+                                            ? 'Blank'
+                                            : this.state.secondCategoryValue}
+                                    </div>
+                                </>
+                            )}
+                        </>
+                    )}
+                </div>
+            </div>
+        );
+    }
+}
 export default App;
