@@ -105,12 +105,13 @@ class App extends React.Component<{}, AppState> {
                     {!this.state.clickedStart && <StartSplash onClick={this.handleClickedStart} />}
                     {this.state.clickedStart && (
                         <>
-                            <div style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                justifyContent: 'right',
-                                paddingLeft: '18rem',
-                            }}
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'right',
+                                    paddingLeft: '18rem',
+                                }}
                             >
                                 {this.state.firstCategoryValue !== 'All' && (
                                     <Button

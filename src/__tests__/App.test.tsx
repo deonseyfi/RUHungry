@@ -41,8 +41,8 @@ describe('Frontend test', () => {
 
         wrapper.find(App).setState({ clickedStart: true });
         wrapper.find(App).setState({ firstCategoryValue: 'Burger' });
-        // Add category button is now the first node because Start was unrendered
-        wrapper.find(Button).first().simulate('click');
+        // Add category button is now the second node because Start was unrendered
+        wrapper.find(Button).at(1).simulate('click');
         wrapper.update();
 
         expect(wrapper.find(App).state('addCategory')).toEqual(true);
@@ -90,6 +90,22 @@ describe('Frontend test', () => {
         wrapper.update();
 
         expect(nextSpy).toHaveBeenCalled();
+        wrapper.unmount();
+    });
+
+    test('Clear button clicked', () => {
+        const wrapper = mount(<App />);
+
+        wrapper.find(App).setState({ clickedStart: true });
+        wrapper.find(App).setState({ firstCategoryValue: 'Burgers' });
+        wrapper.find(App).setState({ addCategory: true });
+        wrapper.find(App).setState({ secondCategoryValue: 'Pizza' });
+        wrapper.find(Button).first().simulate('click');
+        wrapper.update();
+
+        expect(wrapper.find(App).state('firstCategoryValue')).toEqual('All');
+        expect(wrapper.find(App).state('addCategory')).toEqual(false);
+        expect(wrapper.find(App).state('secondCategoryValue')).toEqual('');
         wrapper.unmount();
     });
 });
