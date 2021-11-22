@@ -68,6 +68,15 @@ class App extends React.Component<{}, AppState> {
     };
 
     /**
+     * Clear all selected categories to original state.
+     */
+    public handleClearButton = () => {
+        this.setState({ firstCategoryValue: 'All' });
+        this.setState({ secondCategoryValue: '' });
+        this.setState({ addCategory: false });
+    };
+
+    /**
      * Renders App.
      *
      * @returns {React.ReactNode} Rendered App.
@@ -96,6 +105,27 @@ class App extends React.Component<{}, AppState> {
                     {!this.state.clickedStart && <StartSplash onClick={this.handleClickedStart} />}
                     {this.state.clickedStart && (
                         <>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'right',
+                                    paddingLeft: '18rem',
+                                }}
+                            >
+                                {this.state.firstCategoryValue !== 'All' && (
+                                    <Button
+                                        id='clear'
+                                        variant='outlined'
+                                        color='secondary'
+                                        onClick={() => {
+                                            this.handleClearButton();
+                                        }}
+                                    >
+                                        Clear
+                                    </Button>
+                                )}
+                            </div>
                             <Select
                                 value={this.state.firstCategoryValue}
                                 onChange={(event): void => {
@@ -104,7 +134,6 @@ class App extends React.Component<{}, AppState> {
                             >
                                 {firstCategoryList}
                             </Select>
-                            <div>(DEV) The current selected value is {this.state.firstCategoryValue}</div>
                             <br />
                             {this.state.firstCategoryValue !== 'All' && this.state.addCategory === false && (
                                 <Button
@@ -146,12 +175,6 @@ class App extends React.Component<{}, AppState> {
                                         >
                                             <HighlightOffSharpIcon color='secondary' />
                                         </IconButton>
-                                    </div>
-                                    <div>
-                                        The current selected value is{' '}
-                                        {this.state.secondCategoryValue === ''
-                                            ? 'Blank'
-                                            : this.state.secondCategoryValue}
                                     </div>
                                 </>
                             )}

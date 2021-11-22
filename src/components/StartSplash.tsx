@@ -31,7 +31,7 @@ const StartSplash = (props: StartSplashProps): React.ReactElement<StartSplashPro
             onClick={props.onClick}
             size='large'
         >
-            Start
+            I&apos;m Craving ... 🤔
         </Button>
     </>
 );
