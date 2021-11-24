@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-// eslint-disable-next-line spellcheck/spell-checker
-// import AutorenewIcon from '@material-ui/icons/Autorenew';
+import { Link } from 'react-router-dom';
 import Emoji from './Emoji';
 import CATEGORIES from '../App/constants';
 
@@ -30,14 +29,10 @@ const LuckyButton = (): React.ReactElement => {
             variant='outlined'
             color='inherit'
             startIcon={<Emoji label='shrug' symbol='🤷' />}
-            onClick={() => {
-                // eslint-disable-next-line no-alert
-                alert(selectRandomCategory());
-                // eventually this.setState(randomCategory) inside App
-                // selectRandomCategory to be moved to App
-            }}
+            component={Link}
+            to={`/restaurants/first=${selectRandomCategory()}`}
         >
-            I&apos;m Feeling Lucky
+            I&apos;m Craving ... 🤔
         </Button>
     );
 };
