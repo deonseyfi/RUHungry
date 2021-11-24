@@ -15,7 +15,7 @@ const App = (): React.ReactElement => (
             <Router>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/restaurants/first=:category' element={<Restaurants />} />
+                    <Route path='/restaurants/:categories' element={<Restaurants />} />
                     <Route path='*' element={<NotFoundPage />} />
                 </Routes>
             </Router>
