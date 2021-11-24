@@ -2,13 +2,13 @@ import { FoodCategoryList } from './types';
 
 // Complete list of food categories.
 const CATEGORIES: FoodCategoryList = [
-    { value: '', symbol: '' },
-    { value: 'All', symbol: 'All' },
-    { value: 'Burgers', symbol: '🍔' },
-    { value: 'Hot Dogs', symbol: '🌭' },
-    { value: 'Mexican', symbol: '🌮' },
-    { value: 'Pizza', symbol: '🍕' },
-    { value: 'Italian', symbol: '🍝' },
+    { label: '', symbol: '' },
+    { label: 'All', symbol: 'All' },
+    { label: 'Burgers', symbol: '🍔' },
+    { label: 'Hot Dogs', symbol: '🌭' },
+    { label: 'Mexican', symbol: '🌮' },
+    { label: 'Pizza', symbol: '🍕' },
+    { label: 'Italian', symbol: '🍝' },
 ];
 export default CATEGORIES;
 

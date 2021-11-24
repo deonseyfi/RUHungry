@@ -23,7 +23,7 @@ export type FoodCategoryList = {
     /**
      * The name of the category.
      */
-    value: string;
+    label: string;
     /**
      * The Emoji symbol of the category.
      */

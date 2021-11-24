@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { IconButton } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
 import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
 import { Link } from 'react-router-dom';
 import './App.css';
@@ -76,8 +76,8 @@ class Home extends React.Component<{}, AppState> {
         // Else, remove blank.
         const firstCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
             (this.state.addCategory
-                ? category.value !== this.state.secondCategoryValue && category.value !== '' && category.value !== 'All'
-                : category.value !== ''),
+                ? category.label !== this.state.secondCategoryValue && category.label !== '' && category.label !== 'All'
+                : category.label !== ''),
         );
 
         // New List of Categories for second Select.
@@ -85,8 +85,8 @@ class Home extends React.Component<{}, AppState> {
         // Else, remove All, first category value, and blank.
         const secondCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
             (this.state.secondCategoryValue === ''
-                ? category.value !== this.state.firstCategoryValue && category.value !== 'All'
-                : category.value !== this.state.firstCategoryValue && category.value !== 'All' && category.value !== ''),
+                ? category.label !== this.state.firstCategoryValue && category.label !== 'All'
+                : category.label !== this.state.firstCategoryValue && category.label !== 'All' && category.label !== ''),
         );
         /**
          * Returns the path to navigate to when Next button is clicked.
@@ -141,7 +141,6 @@ class Home extends React.Component<{}, AppState> {
                                     this.setState({ addCategory: true });
                                 }}
                             >
-                                {' '}
                                 Add Another Category
                             </Button>
                         )}
