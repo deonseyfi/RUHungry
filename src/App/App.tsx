@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Food from './Restaurants';
+import Restaurants from './Restaurants';
 import Home from './Home';
 import NotFoundPage from './NotFoundPage';
 
@@ -15,7 +15,7 @@ const App = (): React.ReactElement => (
             <Router>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/restaurants/first=:name' element={<Food />} />
+                    <Route path='/restaurants/first=:category' element={<Restaurants />} />
                     <Route path='*' element={<NotFoundPage />} />
                 </Routes>
             </Router>

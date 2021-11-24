@@ -12,11 +12,11 @@ import CATEGORIES from './constants';
 import { FoodCategoryList } from './types';
 
 /**
- * Main App class.
+ * RUHungry Home Page.
  */
 class Home extends React.Component<{}, AppState> {
     /**
-     * App constructor.
+     * Home constructor.
      */
     public constructor(props: {}) {
         super(props);
@@ -66,9 +66,9 @@ class Home extends React.Component<{}, AppState> {
     };
 
     /**
-     * Renders App.
+     * Renders Home Page.
      *
-     * @returns {React.ReactNode} Rendered App.
+     * @returns {React.ReactNode} Rendered Home Page.
      */
     render(): React.ReactNode {
         // List of Categories for first Select.
