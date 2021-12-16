@@ -76,8 +76,8 @@ class Home extends React.Component<{}, AppState> {
         // Else, remove blank.
         const firstCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
             (this.state.addCategory
-                ? category.label !== this.state.secondCategoryValue && category.label !== '' && category.label !== 'All'
-                : category.label !== ''),
+                ? category.key !== this.state.secondCategoryValue && category.key !== '' && category.key !== 'all'
+                : category.key !== ''),
         );
 
         // New List of Categories for second Select.
@@ -85,8 +85,8 @@ class Home extends React.Component<{}, AppState> {
         // Else, remove All, first category value, and blank.
         const secondCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
             (this.state.secondCategoryValue === ''
-                ? category.label !== this.state.firstCategoryValue && category.label !== 'All'
-                : category.label !== this.state.firstCategoryValue && category.label !== 'All' && category.label !== ''),
+                ? category.key !== this.state.firstCategoryValue && category.key !== 'all'
+                : category.key !== this.state.firstCategoryValue && category.key !== 'all' && category.key !== ''),
         );
         /**
          * Returns the path to navigate to when Next button is clicked.

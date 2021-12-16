@@ -6,11 +6,15 @@ import theme from '../App/theme';
 /**
  * Select props.
  */
-interface SelectProps {
+ interface SelectProps {
     /**
      * List of items in the Select drop-down.
      */
     children: {
+        /**
+         * API key value of the drop-down child item.
+         */
+        key: string;
         /**
          * Text representation of the drop-down child item.
          */
@@ -50,7 +54,7 @@ interface SelectProps {
 const Select = (props: SelectProps): React.ReactElement<SelectProps> => {
     // Map list of children into HTML Option items for Select
     const list = props.children.map((category) => (
-        <option key={category.label} value={category.label}>
+        <option key={category.label} value={category.key}>
             {category.symbol}
         </option>
     ));

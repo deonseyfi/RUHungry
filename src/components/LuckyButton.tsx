@@ -17,7 +17,7 @@ const LuckyButton = (): React.ReactElement => {
      * @returns {string} The randomly chosen food category.
      */
     const selectRandomCategory = (): string => {
-        const categoryValue = CATEGORIES.map((category) => category.label);
+        const categoryValue = CATEGORIES.map((category) => category.key);
         const randomCategory = Math.floor(Math.random() * categoryValue.length);
         // If returned category was All or blank, generate a new category.
         if (categoryValue[randomCategory] === 'All' || categoryValue[randomCategory] === '') {

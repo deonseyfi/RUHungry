@@ -21,6 +21,10 @@
  */
 export type FoodCategoryList = {
     /**
+     * The key value passed to the API.
+     */
+    key: string;
+    /**
      * The name of the category.
      */
     label: string;
