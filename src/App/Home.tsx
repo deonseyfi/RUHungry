@@ -21,22 +21,13 @@ class Home extends React.Component<{}, AppState> {
     public constructor(props: {}) {
         super(props);
         this.state = {
-            clickedStart: false,
             firstCategoryValue: 'All',
             secondCategoryValue: '',
             addCategory: false,
         };
-        this.handleClickedStart = this.handleClickedStart.bind(this);
         this.handleFirstCategoryChange = this.handleFirstCategoryChange.bind(this);
         this.handleSecondCategoryChange = this.handleSecondCategoryChange.bind(this);
     }
-
-    /**
-     * Move from Home to Cravings.
-     */
-    public handleClickedStart = () => {
-        this.setState({ clickedStart: true });
-    };
 
     /**
      * Function to change the current selected option in the first category.
@@ -99,96 +90,90 @@ class Home extends React.Component<{}, AppState> {
                 : `/restaurants/first=${this.state.firstCategoryValue}`);
         return (
             <>
-                {!this.state.clickedStart && <StartSplash onClick={this.handleClickedStart} />}
-                {this.state.clickedStart && (
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'right',
+                        paddingLeft: '18rem',
+                    }}
+                >
+                    {this.state.firstCategoryValue !== 'All' && (
+                        <Button
+                            id='clear'
+                            variant='outlined'
+                            color='secondary'
+                            onClick={() => {
+                                this.handleClearButton();
+                            }}
+                        >
+                            Clear
+                        </Button>
+                    )}
+                </div>
+                <Select
+                    value={this.state.firstCategoryValue}
+                    onChange={(event): void => {
+                        this.handleFirstCategoryChange(String(event.target.value));
+                    }}
+                >
+                    {firstCategoryList}
+                </Select>
+                <br />
+                {this.state.firstCategoryValue !== 'All' && this.state.addCategory === false && (
+                    <Button
+                        id='add'
+                        variant='outlined'
+                        color='inherit'
+                        onClick={() => {
+                            this.setState({ addCategory: true });
+                        }}
+                    >
+                        Add Another Category
+                    </Button>
+                )}
+                {this.state.addCategory === true && (
                     <>
                         <div
                             style={{
                                 display: 'flex',
                                 flexDirection: 'row',
-                                justifyContent: 'right',
-                                paddingLeft: '18rem',
+                                justifyContent: 'center',
+                                paddingLeft: '3rem',
                             }}
                         >
-                            {this.state.firstCategoryValue !== 'All' && (
-                                <Button
-                                    id='clear'
-                                    variant='outlined'
-                                    color='secondary'
-                                    onClick={() => {
-                                        this.handleClearButton();
-                                    }}
-                                >
-                                    Clear
-                                </Button>
-                            )}
-                        </div>
-                        <Select
-                            value={this.state.firstCategoryValue}
-                            onChange={(event): void => {
-                                this.handleFirstCategoryChange(String(event.target.value));
-                            }}
-                        >
-                            {firstCategoryList}
-                        </Select>
-                        <br />
-                        {this.state.firstCategoryValue !== 'All' && this.state.addCategory === false && (
-                            <Button
-                                id='add'
-                                variant='outlined'
-                                color='inherit'
-                                onClick={() => {
-                                    this.setState({ addCategory: true });
+                            <Select
+                                value={this.state.secondCategoryValue}
+                                onChange={(event): void => {
+                                    this.handleSecondCategoryChange(String(event.target.value));
                                 }}
                             >
-                                Add Another Category
-                            </Button>
-                        )}
-                        {this.state.addCategory === true && (
-                            <>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                        justifyContent: 'center',
-                                        paddingLeft: '3rem',
-                                    }}
-                                >
-                                    <Select
-                                        value={this.state.secondCategoryValue}
-                                        onChange={(event): void => {
-                                            this.handleSecondCategoryChange(String(event.target.value));
-                                        }}
-                                    >
-                                        {secondCategoryList}
-                                    </Select>
-                                    <IconButton
-                                        size='medium'
-                                        onClick={() => {
-                                            this.setState({ addCategory: false });
-                                            this.setState({ secondCategoryValue: '' });
-                                        }}
-                                    >
-                                        <HighlightOffSharpIcon color='secondary' />
-                                    </IconButton>
-                                </div>
-                            </>
-                        )}
-                        <br />
-                        <br />
-                        <br />
-                        {(!this.state.addCategory ||
-                            (this.state.addCategory && this.state.secondCategoryValue !== '')) && (
-                            <Button variant='outlined' color='inherit' component={Link} to={getRestaurantsPath()}>
-                                Next
-                            </Button>
-                        )}
-                        <br />
-                        <br />
-                        <br />
-                        <LuckyButton />
+                                {secondCategoryList}
+                            </Select>
+                            <IconButton
+                                size='medium'
+                                onClick={() => {
+                                    this.setState({ addCategory: false });
+                                    this.setState({ secondCategoryValue: '' });
+                                }}
+                            >
+                                <HighlightOffSharpIcon color='secondary' />
+                            </IconButton>
+                        </div>
                     </>
                 )}
+                <br />
+                <br />
+                <br />
+                {(!this.state.addCategory || (this.state.addCategory && this.state.secondCategoryValue !== '')) && (
+                    <Button variant='outlined' color='inherit' component={Link} to={getRestaurantsPath()}>
+                        Next
+                    </Button>
+                )}
+                <br />
+                <br />
+                <br />
+                <LuckyButton />
             </>
         );
     }
