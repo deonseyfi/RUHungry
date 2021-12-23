@@ -21,9 +21,13 @@
  */
 export type FoodCategoryList = {
     /**
+     * The key value passed to the API.
+     */
+    key: string;
+    /**
      * The name of the category.
      */
-    value: string;
+    label: string;
     /**
      * The Emoji symbol of the category.
      */

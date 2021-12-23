@@ -1,14 +1,15 @@
+/* eslint-disable spellcheck/spell-checker */
 import { FoodCategoryList } from './types';
 
 // Complete list of food categories.
 const CATEGORIES: FoodCategoryList = [
-    { value: '', symbol: '' },
-    { value: 'All', symbol: 'All' },
-    { value: 'Burgers', symbol: '🍔' },
-    { value: 'Hot Dogs', symbol: '🌭' },
-    { value: 'Mexican', symbol: '🌮' },
-    { value: 'Pizza', symbol: '🍕' },
-    { value: 'Italian', symbol: '🍝' },
+    { key: '', label: '', symbol: '' },
+    { key: 'all', label: 'All', symbol: 'All' },
+    { key: 'burgers', label: 'Burgers', symbol: '🍔' },
+    { key: 'hotdogs', label: 'Hot Dogs', symbol: '🌭' },
+    { key: 'mexican', label: 'Mexican', symbol: '🌮' },
+    { key: 'pizza', label: 'Pizza', symbol: '🍕' },
+    { key: 'italian', label: 'Italian', symbol: '🍝' },
 ];
 export default CATEGORIES;
 
