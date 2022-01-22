@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import AppState from './app-state';
 import Select from '../components/Select';
-import StartSplash from '../components/StartSplash';
 import LuckyButton from '../components/LuckyButton';
 import CATEGORIES from './constants';
 import { FoodCategoryList } from './types';
