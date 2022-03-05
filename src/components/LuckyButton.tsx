@@ -34,7 +34,7 @@ const LuckyButton = (): React.ReactElement => {
                 navigate(`/restaurants/first=${selectRandomCategory()}`);
             }}
         >
-            I&apos;m Feeling Lucky
+            Pick For Me
         </Button>
     );
 };

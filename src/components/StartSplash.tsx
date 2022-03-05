@@ -1,24 +1,14 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../App/ruhungry.svg';
-
-/**
- * Start Splash props.
- */
-interface StartSplashProps {
-    /**
-     *
-     */
-    onClick: () => void;
-}
 
 /**
  * Start Splash component.
  *
- * @param {StartSplashProps} props Start Splash props.
- * @returns {React.ReactElement<StartSplashProps>} Custom Start Splash component.
+ * @returns {React.ReactElement} Custom Start Splash component.
  */
-const StartSplash = (props: StartSplashProps): React.ReactElement<StartSplashProps> => (
+const StartSplash = (): React.ReactElement => (
     <>
         <Logo className='App-logo' />
         <br />
@@ -28,8 +18,9 @@ const StartSplash = (props: StartSplashProps): React.ReactElement<StartSplashPro
             style={{ minWidth: '5rem', minHeight: '2.5rem' }}
             variant='outlined'
             color='inherit'
-            onClick={props.onClick}
             size='large'
+            component={Link}
+            to='/home'
         >
             I&apos;m Craving ... 🤔
         </Button>

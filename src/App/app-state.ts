@@ -3,10 +3,6 @@
  */
 interface AppState {
     /**
-     * Boolean to check if initial Start button was clicked.
-     */
-    clickedStart: boolean;
-    /**
      * Value of the first chosen food category.
      */
     firstCategoryValue: string;
