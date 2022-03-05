@@ -32,7 +32,8 @@
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-router-dom": "^6.0.2",
-        "react-scripts": "^4.0.3"
+        "react-scripts": "^4.0.3",
+        "yelp-fusion": "^3.0.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.8.4",
@@ -70,11 +71,12 @@
         "build-client": "react-scripts build",
         "test-client": "react-scripts test --coverage --watchAll=false",
         "serve": "cd build-server && node server.js",
-        "start-server": "nodemon --exec babel-node server/server.js",
+        "old-server": "nodemon --exec babel-node server/server.js",
         "test-server": "jest --config=server/jest.config.js /server --coverage",
         "build-server": "babel ./server --out-dir build-server --ignore \"server/coverage\",\"server/**/*.test.js\",\"server/jest.config.js\" --presets minify",
         "seed": "babel-node tools/seedDatabase.js",
-        "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
+        "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+        "start-server": "nodemon --exec babel-node server/express/express-server.js"
     },
     "eslintConfig": {
         "extends": "react-app"
