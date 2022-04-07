@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import { ThemeProvider } from '@material-ui/styles';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogContent from '@material-ui/core/DialogContent';
-import { IconButton } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
 import theme from '../App/theme';
 import '../App/App.css';
 // import { ReactComponent as YelpLogo } from '../App/yelpLogo.svg';
@@ -65,7 +65,18 @@ const CardDetails = (props: CardDetailsProps): React.ReactElement<CardDetailsPro
             onClose={props.onClose}
             maxWidth='md'
         >
-            <DialogTitle>{props.restaurantTitle}</DialogTitle>
+            <div className='card-details-header'>
+                <div className='yelp-logo'>
+                    <IconButton onClick={() => window.open(props.yelpUrl, '_blank')}>
+                        <img src={YelpLogo} alt='Yelp Logo' />
+                    </IconButton>
+                    <div className='yelp-logo-text'> Read Reviews </div>
+                </div>
+                <DialogTitle
+                    style={{ alignSelf: 'center', paddingTop: '0px', paddingBottom: '10px' }}
+                >{props.restaurantTitle}
+                </DialogTitle>
+            </div>
             <DialogContent>
                 <img className='card-details-photos' src={props.photos} alt='restaurant' />
                 <DialogContentText component='span'>
@@ -73,11 +84,6 @@ const CardDetails = (props: CardDetailsProps): React.ReactElement<CardDetailsPro
                         <DirectionsIcon fontSize='large' />
                         {props.address}
                     </li>
-                    <div className='yelp-logo'>
-                        <IconButton onClick={() => window.open(props.yelpUrl, '_blank')}>
-                            <img src={YelpLogo} alt='Yelp Logo' />
-                        </IconButton>
-                    </div>
                 </DialogContentText>
                 <div className='card-details-buttons'>
                     <Button variant='outlined' color='inherit' href={props.mapLink} target='_blank' size='small'>

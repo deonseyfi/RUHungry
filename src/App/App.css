@@ -57,18 +57,26 @@ li {
     justify-content: flex-start;
     text-align: start;
 }
-.yelp-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-    align-self: flex-end;
-}
 .Card-Details{
     text-align: center;
     display: 'flex';
     flex-direction: column;
     justify-content: center;
+    align-self: flex-start;
+}
+.card-details-header{
+    display: flex;
+    flex-direction: column;
+}
+.yelp-logo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.yelp-logo-text{
+    font-size: x-small;
+    color: #a5a5a5;
+    padding-right: 12px;
 }
 .card-details-buttons{
     display: flex;
