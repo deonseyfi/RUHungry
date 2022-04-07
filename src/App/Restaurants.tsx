@@ -1,5 +1,8 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import CardDetails from '../components/CardDetails';
+import { Restaurant, RestaurantDetails } from './types';
 
 // TODO: Food cards will go here.
 
@@ -8,9 +11,21 @@ import { useParams } from 'react-router-dom';
  *
  * @param {string} list Single string of the pulled category url.
  * @param {number} index Index of the split list array.
+ * @param catList
  * @returns {string} Category name at specific index.
  */
-const getCategory = (list: string, index: number): string => list.split('&')[index].toString().split('=')[1];
+const getCategory = (catList: string): string => {
+    const categorySize = catList.includes('&') ? 2 : 1;
+    const cat1 =
+        categorySize > 1
+            ? catList.substring(catList.indexOf('=') + 1, catList.indexOf('&'))
+            : catList.substring(catList.indexOf('=') + 1);
+    if (categorySize > 1) {
+        const cat2 = catList.substring(catList.lastIndexOf('=') + 1);
+        return `${cat1} and ${cat2}`;
+    }
+    return `${cat1}`;
+};
 
 /**
  * Restaurants results page with card stack and chosen categories.
@@ -18,22 +33,80 @@ const getCategory = (list: string, index: number): string => list.split('&')[ind
  * @returns {React.ReactElement} Restaurants page component.
  */
 const Restaurants = (): React.ReactElement => {
-    // TODO: Terrible spaghetti, research a better way to split url output.
+    // TODO: Terrible spaghetti, research a better way to split url output. (For testing only)
     const { categories } = useParams();
     const catList = categories !== undefined ? categories : 'null';
-    const categorySize = catList.split('&').length;
-    const cat1 = getCategory(catList, 0);
-    const cat2 = categorySize > 1 ? getCategory(catList, 1) : 'null';
+    const categoryText = getCategory(catList);
 
+    const [open, setOpen] = React.useState(false);
+    /**
+     * Function to open or close the Dialog.
+     */
+    const handleOpenClose = () => {
+        setOpen(!open);
+    };
+    const restaurant: Restaurant = {
+        // Pull info from API, this is for testing purposes only.
+        // https://api.yelp.com/v3/businesses/search?{params}
+        // eslint-disable-next-line spellcheck/spell-checker
+        id: 'krs94qCUqsxEey1rFXyAhg',
+        name: "Dave's Hot Chicken",
+        price: 2,
+        categories: [
+            { alias: 'chickenshop' },
+            { alias: 'american' },
+        ],
+        imageUrl: 'https://s3-media3.fl.yelpcdn.com/bphoto/d08yu8NH0qiIUG5PkGPdHA/o.jpg',
+    };
+    const restaurantDetail: RestaurantDetails = {
+        // Pull info from API, this is for testing purposes only.
+        // https://api.yelp.com/v3/businesses/{id}
+        displayAddress: '1350 E Colorado St, Glendale, CA 91205',
+        displayPhone: '(818) 937-9488',
+        isOpenNow: true,
+        // eslint-disable-next-line spellcheck/spell-checker
+        // eslint-disable-next-line max-len
+        url: 'https://www.yelp.com/biz/daves-hot-chicken-glendale-3?adjust_creative=Rit42U9ivRMCkc_nRd-X1A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=Rit42U9ivRMCkc_nRd-X1A',
+        photos: [
+            'https://s3-media3.fl.yelpcdn.com/bphoto/d08yu8NH0qiIUG5PkGPdHA/o.jpg',
+            'https://s3-media2.fl.yelpcdn.com/bphoto/AwXNZ9owcpwvDYwamslGTg/o.jpg',
+            'https://s3-media1.fl.yelpcdn.com/bphoto/YFKwJTfpfmkYkzYcn5mwrg/o.jpg',
+        ],
+    };
+
+    /**
+     * Function to return a formatted map link of the restaurant.
+     *
+     * @param {string} name The name of the restaurant.
+     * @param {string} address The full address of the restaurant.
+     * @returns {string} Map link of the selected restaurant.
+     */
+    const getLink = (name: string, address: string): string =>
+        `https://maps.apple.com/?address=${encodeURIComponent(address)}&q=${encodeURIComponent(name)}`;
     return (
         <div>
-            <h1>(DEV) You have selected</h1>
-            {categorySize > 1 && (
-                <h1>
-                    {cat1} and {cat2}
-                </h1>
-            )}
-            {categorySize < 2 && <h1>{cat1}</h1>}
+            <Button
+                variant='outlined'
+                color='inherit'
+                component={Link}
+                to={{ pathname: '/home' }}
+            >
+                New Search
+            </Button>
+            <h1>(DEV) You have selected {categoryText}</h1>
+            <Button variant='outlined' color='inherit' onClick={handleOpenClose}>
+                Click To Open details of {restaurant.name}
+            </Button>
+            <CardDetails
+                open={open}
+                onClose={handleOpenClose}
+                restaurantTitle={restaurant.name}
+                mapLink={getLink(restaurant.name, restaurantDetail.displayAddress)}
+                address={restaurantDetail.displayAddress}
+                phoneNumber={restaurantDetail.displayPhone}
+                photos={restaurantDetail.photos[0]}
+                yelpUrl={restaurantDetail.url}
+            />
         </div>
     );
 };

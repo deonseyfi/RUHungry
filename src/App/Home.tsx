@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import AppState from './app-state';
 import Select from '../components/Select';
-import StartSplash from '../components/StartSplash';
 import LuckyButton from '../components/LuckyButton';
 import CATEGORIES from './constants';
 import { FoodCategoryList } from './types';
@@ -62,18 +61,22 @@ class Home extends React.Component<{}, AppState> {
      * @returns {React.ReactNode} Rendered Home Page.
      */
     render(): React.ReactNode {
-        // List of Categories for first Select.
-        // If second category, remove All, blank, and second category value.
-        // Else, remove blank.
+        /**
+         * List of Categories for first Select.
+         * If second category, remove All, blank, and second category value.
+         * Else, remove blank.
+         */
         const firstCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
             (this.state.addCategory
                 ? category.key !== this.state.secondCategoryValue && category.key !== '' && category.key !== 'all'
                 : category.key !== ''),
         );
 
-        // New List of Categories for second Select.
-        // If second category value is blank, remove All and first category value.
-        // Else, remove All, first category value, and blank.
+        /**
+         * New List of Categories for second Select.
+         * If second category value is blank, remove All and first category value.
+         * Else, remove All, first category value, and blank.
+         */
         const secondCategoryList: FoodCategoryList = CATEGORIES.filter((category) =>
             (this.state.secondCategoryValue === ''
                 ? category.key !== this.state.firstCategoryValue && category.key !== 'all'
@@ -166,7 +169,13 @@ class Home extends React.Component<{}, AppState> {
                 <br />
                 <br />
                 {(!this.state.addCategory || (this.state.addCategory && this.state.secondCategoryValue !== '')) && (
-                    <Button variant='outlined' color='inherit' component={Link} to={getRestaurantsPath()}>
+                    <Button
+                        variant='outlined'
+                        color='inherit'
+                        component={Link}
+                        to={{ pathname: getRestaurantsPath() }}
+                        state={this.state.firstCategoryValue}
+                    >
                         Next
                     </Button>
                 )}

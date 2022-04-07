@@ -51,7 +51,13 @@
                     "mongod",
                     "Mui",
                     "unmount",
-                    "unrendered"
+                    "unrendered",
+                    "pathname",
+                    "chickenshop",
+                    "hotdogs",
+                    "mexican",
+                    "italian",
+                    "american"
                 ]
             }
         ],

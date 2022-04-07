@@ -4,6 +4,7 @@ import Restaurants from './Restaurants';
 import Home from './Home';
 import NotFoundPage from './NotFoundPage';
 import SplashPage from './SplashPage';
+import './App.css';
 
 /**
  * Main App component.
