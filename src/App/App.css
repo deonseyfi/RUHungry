@@ -71,12 +71,34 @@ li {
 .yelp-logo{
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
 .yelp-logo-text{
     font-size: x-small;
     color: #a5a5a5;
-    padding-right: 12px;
+    padding-bottom: 12px;
+    margin-top: -8px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 1.37rem;
+}
+.yelp-ratings{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.yelp-review-count{
+    color: #a5a5a5;
+    display: flex;
+    align-self: center;
+    margin-left: -6px;
+    margin-top: 2px;
+}
+.yelp-contents{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 32px;
 }
 .card-details-buttons{
     display: flex;

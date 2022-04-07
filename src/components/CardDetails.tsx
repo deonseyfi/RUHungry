@@ -12,8 +12,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import theme from '../App/theme';
 import '../App/App.css';
-// import { ReactComponent as YelpLogo } from '../App/yelpLogo.svg';
-import YelpLogo from '../App/yelpLogo.svg';
+import YelpLogo from '../assets/yelpLogo.svg';
 /**
  * Card Details props.
  */
@@ -49,7 +48,15 @@ interface CardDetailsProps {
     /**
      * Main Yelp URL of the restaurant.
      */
-     yelpUrl: string;
+    yelpUrl: string;
+    /**
+     * Rating image of the restaurant.
+     */
+    ratingImage: string;
+    /**
+     * Review count of the restaurant.
+     */
+    reviewCount: number;
 }
 /**
  * Card details component providing detailed information about the selected restaurant.
@@ -66,14 +73,8 @@ const CardDetails = (props: CardDetailsProps): React.ReactElement<CardDetailsPro
             maxWidth='md'
         >
             <div className='card-details-header'>
-                <div className='yelp-logo'>
-                    <IconButton onClick={() => window.open(props.yelpUrl, '_blank')}>
-                        <img src={YelpLogo} alt='Yelp Logo' />
-                    </IconButton>
-                    <div className='yelp-logo-text'> Read Reviews </div>
-                </div>
                 <DialogTitle
-                    style={{ alignSelf: 'center', paddingTop: '0px', paddingBottom: '10px' }}
+                    style={{ alignSelf: 'center', paddingBottom: '10px' }}
                 >{props.restaurantTitle}
                 </DialogTitle>
             </div>
@@ -100,6 +101,20 @@ const CardDetails = (props: CardDetailsProps): React.ReactElement<CardDetailsPro
                     </Button>
                 </div>
             </DialogContent>
+            <div className='yelp-contents'>
+                <div className='yelp-ratings'>
+                    <IconButton style={{ paddingBottom: '8px' }} onClick={() => window.open(props.yelpUrl, '_blank')}>
+                        <img src={props.ratingImage} alt='rating' />
+                    </IconButton>
+                    <div className='yelp-review-count'>{props.reviewCount}</div>
+                </div>
+                <div className='yelp-logo'>
+                    <IconButton onClick={() => window.open(props.yelpUrl, '_blank')}>
+                        <img src={YelpLogo} alt='Yelp Logo' />
+                    </IconButton>
+                </div>
+            </div>
+            <div className='yelp-logo-text'> Read Reviews </div>
         </Dialog>
     </ThemeProvider>
 );

@@ -51,11 +51,11 @@ export type Restaurant = {
     /**
      * Rating of the restaurant.
      */
-    rating?: number;
+    rating: number;
     /**
      * Amount of reviews for the restaurant.
      */
-    reviewCount?: number;
+    reviewCount: number;
 };
 /**
  * List of multiple Restaurants.

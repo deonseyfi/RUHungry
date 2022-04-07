@@ -52,6 +52,8 @@ const Restaurants = (): React.ReactElement => {
         id: 'krs94qCUqsxEey1rFXyAhg',
         name: "Dave's Hot Chicken",
         price: 2,
+        rating: 4,
+        reviewCount: 320,
         categories: [
             { alias: 'chickenshop' },
             { alias: 'american' },
@@ -83,6 +85,14 @@ const Restaurants = (): React.ReactElement => {
      */
     const getLink = (name: string, address: string): string =>
         `https://maps.apple.com/?address=${encodeURIComponent(address)}&q=${encodeURIComponent(name)}`;
+
+    /**
+     * Returns the location of the appropriate rating image (Using this method to avoid importing all images).
+     *
+     * @param {number} rating The restaurant's rating.
+     * @returns {string} The location of the appropriate rating image.
+     */
+    const getRating = (rating: number): string => `${process.env.PUBLIC_URL}/yelp-stars/${rating}.png`;
     return (
         <div>
             <Button
@@ -106,6 +116,8 @@ const Restaurants = (): React.ReactElement => {
                 phoneNumber={restaurantDetail.displayPhone}
                 photos={restaurantDetail.photos[0]}
                 yelpUrl={restaurantDetail.url}
+                ratingImage={getRating(restaurant.rating)}
+                reviewCount={restaurant.reviewCount}
             />
         </div>
     );
