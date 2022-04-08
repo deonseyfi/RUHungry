@@ -31,6 +31,7 @@
         "mongoose": "^5.9.15",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
+        "react-material-ui-carousel": "^2.3.11",
         "react-router-dom": "^6.0.2",
         "react-scripts": "^4.0.3"
     },

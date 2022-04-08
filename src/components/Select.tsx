@@ -1,7 +1,5 @@
 import React from 'react';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import { Select as MuiSelect } from '@material-ui/core';
-import theme from '../App/theme';
 
 /**
  * Select props.
@@ -60,16 +58,14 @@ const Select = (props: SelectProps): React.ReactElement<SelectProps> => {
     ));
 
     return (
-        <ThemeProvider theme={theme}>
-            <MuiSelect
-                native
-                value={props.value}
-                disabled={props.disabled}
-                onChange={props.onChange}
-            >
-                {list}
-            </MuiSelect>
-        </ThemeProvider>
+        <MuiSelect
+            native
+            value={props.value}
+            disabled={props.disabled}
+            onChange={props.onChange}
+        >
+            {list}
+        </MuiSelect>
     );
 };
 Select.defaultProps = {

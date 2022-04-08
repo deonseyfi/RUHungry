@@ -114,7 +114,7 @@ const Restaurants = (): React.ReactElement => {
                 mapLink={getLink(restaurant.name, restaurantDetail.displayAddress)}
                 address={restaurantDetail.displayAddress}
                 phoneNumber={restaurantDetail.displayPhone}
-                photos={restaurantDetail.photos[0]}
+                photos={restaurantDetail.photos}
                 yelpUrl={restaurantDetail.url}
                 ratingImage={getRating(restaurant.rating)}
                 reviewCount={restaurant.reviewCount}
