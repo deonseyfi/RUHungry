@@ -9,9 +9,7 @@ import { Restaurant, RestaurantDetails } from './types';
 /**
  * Takes in url string and splits it into individual categories.
  *
- * @param {string} list Single string of the pulled category url.
- * @param {number} index Index of the split list array.
- * @param catList
+ * @param {string} catList URL string given to split.
  * @returns {string} Category name at specific index.
  */
 const getCategory = (catList: string): string => {
@@ -33,7 +31,6 @@ const getCategory = (catList: string): string => {
  * @returns {React.ReactElement} Restaurants page component.
  */
 const Restaurants = (): React.ReactElement => {
-    // TODO: Terrible spaghetti, research a better way to split url output. (For testing only)
     const { categories } = useParams();
     const catList = categories !== undefined ? categories : 'null';
     const categoryText = getCategory(catList);

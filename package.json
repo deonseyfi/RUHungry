@@ -30,6 +30,7 @@
         "express": "^4.17.1",
         "mongoose": "^5.9.15",
         "react": "^16.13.1",
+        "react-device-detect": "^2.2.2",
         "react-dom": "^16.13.1",
         "react-material-ui-carousel": "^2.3.11",
         "react-router-dom": "^6.0.2",

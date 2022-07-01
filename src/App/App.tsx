@@ -5,6 +5,7 @@ import Restaurants from './Restaurants';
 import Home from './Home';
 import NotFoundPage from './NotFoundPage';
 import SplashPage from './SplashPage';
+import DonateLink from '../components/DonateLink';
 import './App.css';
 import theme from './theme';
 
@@ -16,6 +17,7 @@ import theme from './theme';
 const App = (): React.ReactElement => (
     <ThemeProvider theme={theme}>
         <div className='App'>
+            <DonateLink />
             <div className='App-header'>
                 <Router>
                     <Routes>

@@ -19,8 +19,8 @@ li {
     max-width: 60%;
   }
 .card-details-photos{
-    max-height: 17.3rem;
-    max-width: 17.3rem;
+    max-height: 20rem;
+    max-width: 20rem;
     height: auto;
     width: auto;
     display: block;
@@ -33,11 +33,11 @@ li {
 }
 
 .App-header {
-    min-height: 100vh;
+    min-height: 93vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content:center;
     font-size: calc(10px + 2vmin);
     color: white;
 }

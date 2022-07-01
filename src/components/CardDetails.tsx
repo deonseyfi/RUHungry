@@ -1,12 +1,9 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import Slide from '@material-ui/core/Slide';
-// import { TransitionProps } from '@material-ui/core/transitions';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import PhoneIcon from '@material-ui/icons/Phone';
 import Button from '@material-ui/core/Button';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCarousel from './PhotoCarousel';
