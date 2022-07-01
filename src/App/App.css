@@ -1,5 +1,7 @@
 .App {
     text-align: center;
+    background-color: #718cc2;
+    overflow: hidden;
 }
 
 .App-logo {
@@ -31,7 +33,6 @@ li {
 }
 
 .App-header {
-    background-color: #282c34;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -98,12 +99,13 @@ li {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 32px;
+    padding-top: 16px;
 }
 .card-details-buttons{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding-top: 32px;
 }
 
 @keyframes App-logo-spin {

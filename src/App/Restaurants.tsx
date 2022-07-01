@@ -112,7 +112,6 @@ const Restaurants = (): React.ReactElement => {
                 onClose={handleOpenClose}
                 restaurantTitle={restaurant.name}
                 mapLink={getLink(restaurant.name, restaurantDetail.displayAddress)}
-                address={restaurantDetail.displayAddress}
                 phoneNumber={restaurantDetail.displayPhone}
                 photos={restaurantDetail.photos}
                 yelpUrl={restaurantDetail.url}

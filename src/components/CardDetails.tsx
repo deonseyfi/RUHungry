@@ -33,10 +33,6 @@ interface CardDetailsProps {
      */
     mapLink: string;
     /**
-     * The full address of the restaurant.
-     */
-    address: string;
-    /**
      * The phone number of the restaurant.
      */
     phoneNumber: string;
@@ -78,15 +74,16 @@ const CardDetails = (props: CardDetailsProps): React.ReactElement<CardDetailsPro
         </div>
         <DialogContent>
             <PhotoCarousel photos={props.photos} />
-            <DialogContentText component='span'>
-                <li className='Card-list'>
-                    <DirectionsIcon fontSize='large' />
-                    {props.address}
-                </li>
-            </DialogContentText>
             <div className='card-details-buttons'>
-                <Button variant='outlined' color='inherit' href={props.mapLink} target='_blank' size='small'>
-                    Get Directions
+                <Button
+                    variant='outlined'
+                    color='inherit'
+                    href={props.mapLink}
+                    target='_blank'
+                    size='small'
+                    startIcon={<DirectionsIcon />}
+                >
+                    Directions
                 </Button>
                 <Button
                     variant='outlined'
@@ -94,6 +91,7 @@ const CardDetails = (props: CardDetailsProps): React.ReactElement<CardDetailsPro
                     href={`tel:${props.phoneNumber}`}
                     size='small'
                     startIcon={<PhoneIcon />}
+                    style={{ marginLeft: '16px' }}
                 >
                     {props.phoneNumber}
                 </Button>
