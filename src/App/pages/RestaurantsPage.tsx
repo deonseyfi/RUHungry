@@ -1,9 +1,9 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import CardDetails from '../components/CardDetails';
-import RestaurantCards from '../components/RestaurantCards';
-import { Restaurant, RestaurantDetails } from './types';
+import CardDetails from '../../components/CardDetails';
+import RestaurantCards from '../../components/RestaurantCards';
+import { Restaurant, RestaurantDetails } from '../types';
 
 // TODO: Food cards will go here.
 
@@ -31,7 +31,7 @@ const getCategory = (catList: string): string => {
  *
  * @returns {React.ReactElement} Restaurants page component.
  */
-const Restaurants = (): React.ReactElement => {
+const RestaurantsPage = (): React.ReactElement => {
     const { categories } = useParams();
     const catList = categories !== undefined ? categories : 'null';
     const categoryText = getCategory(catList);
@@ -93,17 +93,15 @@ const Restaurants = (): React.ReactElement => {
     const getRating = (rating: number): string => `${process.env.PUBLIC_URL}/yelp-stars/${rating}.png`;
     return (
         <div>
-            <div style={{ display: 'flex', paddingBottom: '150px', paddingLeft: '20px' }}>
-                <Button
-                    variant='outlined'
-                    color='inherit'
-                    component={Link}
-                    to={{ pathname: '/home' }}
-                >
-                    New Search
-                </Button>
-            </div>
             <RestaurantCards />
+            <Button
+                variant='outlined'
+                color='inherit'
+                component={Link}
+                to={{ pathname: '/home' }}
+            >
+                New Search
+            </Button>
             <h1>(DEV) You have selected {categoryText}</h1>
             <Button variant='outlined' color='inherit' onClick={handleOpenClose}>
                 Click To Open details of {restaurant.name}
@@ -122,7 +120,7 @@ const Restaurants = (): React.ReactElement => {
         </div>
     );
 };
-export default Restaurants;
+export default RestaurantsPage;
 
 /*
     This works the same as above, just takes 2 separate slugs instead of parsing one.

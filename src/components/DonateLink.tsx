@@ -5,7 +5,7 @@ import React from 'react';
  */
 const DonateLink = () => (
     <a
-        href='https://www.google.com'
+        href='https://www.buymeacoffee.com/aramg'
         target='_blank'
         style={{
             margin: 0,
